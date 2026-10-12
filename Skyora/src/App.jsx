@@ -1,14 +1,31 @@
-
 import './index.css'
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
+import MainLayout from './layouts/MainLayout';
 
-function App() {
-  
+ const router = createBrowserRouter([
+  {
+    path: "/",
+    Component:MainLayout,
+    children:[
+      {
+    index: true,
+    element: <Home/>
+  },
+  {
+    path: "/about",
+    element: <AboutUs/>
+  },
+    ]
+  },
+]);
 
+function Router() {
   return (
-    <>
-    <h2 className='text-center py-10 font-bold text-4xl'>Skyora</h2>
-    </>
+     <RouterProvider router={router} />
   )
 }
 
-export default App
+export default Router
